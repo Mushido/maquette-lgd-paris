@@ -31,7 +31,7 @@ h1,h2,h3{font-family:"Clash Display","Arial Black",sans-serif;letter-spacing:-.0
 section,[id]{scroll-margin-top:90px}
 .eyebrow{display:inline-flex;align-items:center;gap:14px;color:var(--gold-d);text-transform:uppercase;letter-spacing:.3em;font-size:12.5px;font-weight:700}
 .eyebrow:before,.eyebrow.c:after{content:"";width:40px;height:1px;background:var(--gold);transform-origin:left;transition:transform 1s var(--ease) .2s}
-.dark .eyebrow,.hero .eyebrow{color:var(--gold)}
+.dark .eyebrow,.hero .eyebrow{color:var(--gold-d)}
 .btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--teal);color:#fff;font-weight:700;padding:14px 24px;border-radius:8px;border:0;cursor:pointer;font-size:15.5px;transition:background .2s,transform .2s,box-shadow .2s;min-height:48px;text-align:center}
 .btn:hover{background:var(--teal-d);transform:translateY(-2px);box-shadow:0 10px 24px rgba(27,140,123,.3)}
 .btn:after{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(110deg,transparent,rgba(255,255,255,.35),transparent);transition:left .7s var(--ease)}
@@ -80,33 +80,50 @@ nav.main a.active{color:var(--teal)}
 .drawer .btn{margin-top:14px}
 
 /* HERO */
-.hero{position:relative;color:#fff;min-height:740px;display:flex;align-items:center;overflow:hidden;background:#111}
-.hero .media{position:absolute;inset:0}
-.hero .media img,.hero .media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero .media img{animation:kb 22s ease-in-out infinite alternate}
-@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.12) translate(-1.5%,-1%)}}
-.hero .media video{opacity:0;transition:opacity 1.2s}
+.hero{position:relative;color:var(--ink);min-height:680px;display:flex;align-items:center;overflow:hidden;background:radial-gradient(ellipse at 70% 40%,#f7f7f5 0%,#ececea 70%,#e4e4e2 100%)}
+.hero .media{position:absolute;top:0;bottom:0;right:0;width:84%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%);mask-image:linear-gradient(90deg,transparent 0,#000 22%)}
+.hero .media img,.hero .media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 72%}
+.hero .media img{transition:opacity .8s}
+.hero .media img.wait{opacity:0}
+.hero .media video{opacity:0;transition:opacity .4s}
 .hero .media video.on{opacity:1}
-.hero:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(10,10,10,.92) 0%,rgba(10,10,10,.75) 48%,rgba(10,10,10,.3) 100%)}
-.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding-top:70px;padding-bottom:70px;width:100%}
+.hero:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(236,236,234,.96) 0%,rgba(236,236,234,.75) 32%,rgba(236,236,234,0) 52%);pointer-events:none}
+.hero .wrap{position:relative;z-index:2;padding-top:70px;padding-bottom:90px;width:100%}
+.hero .txt{max-width:600px}
 .hero h1{font-size:60px;line-height:1.02;margin:22px 0 20px;font-weight:700}
-.hero h1 .gold{color:var(--gold);display:inline-block}
-.hero .lead{font-size:19px;color:rgba(255,255,255,.88);max-width:540px}
+.hero h1 .gold{color:var(--gold-d);display:inline-block}
+.hero .lead{font-size:19px;color:#3a404a;max-width:540px}
 .ticks{list-style:none;margin:28px 0 34px;display:grid;grid-template-columns:1fr 1fr;gap:12px 24px}
 .ticks li{display:flex;gap:10px;align-items:center;font-size:15.5px;font-weight:500}
 .ticks svg{flex:0 0 22px}
 .hero .ctas{display:flex;gap:14px;flex-wrap:wrap}
+.mailink{display:inline-block;margin-top:16px;font-weight:700;color:var(--teal);font-size:15px;border-bottom:2px solid transparent;transition:border-color .2s}
+.mailink:hover{border-color:var(--teal)}
 .in{opacity:0;transform:translateY(26px);animation:up .9s var(--ease) forwards}
 @keyframes up{to{opacity:1;transform:none}}
 .d1{animation-delay:.15s}.d2{animation-delay:.3s}.d3{animation-delay:.45s}.d4{animation-delay:.6s}.d5{animation-delay:.75s}
 .fromR{opacity:0;transform:translateX(40px);animation:right 1s var(--ease) .5s forwards}
 @keyframes right{to{opacity:1;transform:none}}
-.scrollcue{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:2;width:26px;height:42px;border:2px solid rgba(255,255,255,.6);border-radius:14px}
-.scrollcue:after{content:"";position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;background:#fff;border-radius:2px;animation:cue 1.8s infinite}
+.scrollcue{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:2;width:26px;height:42px;border:2px solid rgba(10,10,10,.35);border-radius:14px}
+.scrollcue:after{content:"";position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;background:var(--ink);border-radius:2px;animation:cue 1.8s infinite}
 @keyframes cue{0%{opacity:0;transform:translateY(0)}40%{opacity:1}100%{opacity:0;transform:translateY(14px)}}
 
+/* QUOTE SECTION */
+.quote .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:start}
+.qleft{position:sticky;top:110px}
+.qleft h2{font-size:46px;line-height:1.06;margin:16px 0 16px}
+.qleft p.l{color:var(--muted);font-size:17px;margin-bottom:26px}
+.qsteps{list-style:none;display:grid;gap:12px;margin-bottom:28px}
+.qsteps li{display:flex;gap:14px;align-items:center;font-weight:500}
+.qsteps b{flex:0 0 38px;height:38px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-family:"Clash Display"}
+.qphone{display:inline-flex;gap:14px;align-items:center;background:var(--ink);color:#fff;border-radius:14px;padding:16px 22px;transition:transform .3s var(--ease)}
+.qphone:hover{transform:translateY(-3px)}
+.qphone .ic{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;font-size:20px}
+.qphone b{display:block;font-family:"Clash Display";font-size:24px;line-height:1.1}
+.qphone small{display:block;color:rgba(255,255,255,.65);font-size:12.5px}
+.qform .fh{font-size:24px;font-weight:600}
 /* FORM */
-.qform{background:#fff;color:var(--ink);border-radius:16px;padding:30px;box-shadow:0 40px 80px rgba(0,0,0,.4);border-top:5px solid var(--teal)}
+.qform{background:#fff;color:var(--ink);border-radius:16px;padding:32px;box-shadow:0 30px 70px rgba(0,0,0,.12);border-top:5px solid var(--teal)}
 .qform h2{font-size:25px;font-weight:600}
 .qform .sub{color:var(--muted);font-size:14.5px;margin:4px 0 14px}
 .fprog{height:6px;background:var(--line);border-radius:9px;overflow:hidden;margin-bottom:6px}
@@ -135,7 +152,7 @@ input:focus,select:focus{outline:none;border-color:var(--teal);background:#fff;b
 @keyframes fill{0%,40%{border-color:var(--gold);background:#fff6df;box-shadow:0 0 0 4px rgba(232,168,50,.35)}}
 .chip.pulse{animation:cp 1.4s}@keyframes cp{0%,50%{box-shadow:0 0 0 5px rgba(232,168,50,.55)}}
 .qform.flash{animation:flash 1.2s}
-@keyframes flash{0%{box-shadow:0 0 0 0 rgba(232,168,50,.9),0 40px 80px rgba(0,0,0,.4)}100%{box-shadow:0 0 0 24px rgba(232,168,50,0),0 40px 80px rgba(0,0,0,.4)}}
+@keyframes flash{0%{box-shadow:0 0 0 0 rgba(232,168,50,.9),0 30px 70px rgba(0,0,0,.12)}100%{box-shadow:0 0 0 24px rgba(232,168,50,0),0 30px 70px rgba(0,0,0,.12)}}
 
 /* STATS */
 .stats{background:var(--ink);color:#fff;position:relative;overflow:hidden}
@@ -335,10 +352,15 @@ footer .addr{color:rgba(255,255,255,.6);font-size:13px}
 @media(max-width:960px){
   nav.main,.hright .btn.hd{display:none}
   .burger{display:block}
-  .hero{min-height:0}
+  .hero{min-height:0;flex-direction:column;align-items:stretch}
+  .hero .media{position:relative;order:2;width:100%;height:56vw;max-height:420px;-webkit-mask-image:none;mask-image:none}
+  .hero .media img,.hero .media video{object-position:68% 62%}
+  .quote .wrap{grid-template-columns:1fr;gap:36px}
+  .qleft{position:static}
+  .qleft h2{font-size:34px}
   .hero .wrap,.airport .wrap,.why .wrap{grid-template-columns:1fr;gap:40px}
-  .hero .wrap{padding-top:48px;padding-bottom:56px}
-  .hero:before{background:linear-gradient(180deg,rgba(10,10,10,.85),rgba(10,10,10,.75))}
+  .hero .wrap{padding-top:44px;padding-bottom:8px}
+  .hero:before{display:none}
   .hero h1{font-size:40px}.ticks{grid-template-columns:1fr}
   .scrollcue{display:none}
   .stats .wrap{grid-template-columns:1fr 1fr}
@@ -374,7 +396,9 @@ footer .addr{color:rgba(255,255,255,.6);font-size:13px}
   .fleet,.svc,.revs,.aps{grid-template-columns:1fr}
   .stat b{font-size:34px}
   .mtrack span{font-size:28px;gap:36px;padding:0 18px}
-  .head h2,.airport h2,.why h2,.cta h2{font-size:29px}
+  .head h2,.airport h2,.why h2,.cta h2,.qleft h2{font-size:29px}
+  .hero .media{height:62vw}
+  .qphone{width:100%}
   .band{height:400px}.band blockquote{font-size:26px}
   .collage{height:360px}
   .collage .badge{padding:12px 16px}.collage .badge b{font-size:24px}
@@ -411,11 +435,11 @@ footer .addr{color:rgba(255,255,255,.6);font-size:13px}
 
 <div class="hero" id="top">
   <div class="media" aria-hidden="true">
-    <img src="autocar-30-places.webp" alt="">
-    <video id="heroVid" muted loop playsinline preload="none" poster="autocar-30-places.webp" data-src="hero-header.mp4"></video>
+    <img id="heroImg" src="hero-bus-final.webp" alt="">
+    <video id="heroVid" muted playsinline preload="none" data-src="hero-header.mp4"></video>
   </div>
   <div class="wrap">
-    <div>
+    <div class="txt">
       <div class="eyebrow in">Depuis 2014</div>
       <h1 class="in d1">Location d'autocar avec chauffeur à Paris, <span class="gold">de 7 à 57&nbsp;places</span></h1>
       <p class="lead in d2">Transferts aéroport, séminaires, mariages, sorties scolaires, excursions. Dites-nous où, quand et combien vous êtes&nbsp;: votre devis gratuit arrive sous 24h.</p>
@@ -425,11 +449,41 @@ footer .addr{color:rgba(255,255,255,.6);font-size:13px}
         <li><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#e8a832"/><path d="M7 12.5l3.2 3L17 9" stroke="#0a0a0a" stroke-width="2.2" fill="none"/></svg>Minivan, minibus ou Grand Tourisme</li>
         <li><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#e8a832"/><path d="M7 12.5l3.2 3L17 9" stroke="#0a0a0a" stroke-width="2.2" fill="none"/></svg>Orly, CDG et Le Bourget</li>
       </ul>
-      <div class="ctas in d4"><a class="btn gold" href="tel:+33142379540" data-call>📞 Appeler le 01 42 37 95 40</a><a class="btn line" href="mailto:contact@lgdparis.com" data-mail>✉ Écrire par e-mail</a></div>
+      <div class="ctas in d4"><button type="button" class="btn" data-prefill='{}'>Obtenir mon devis gratuit <span class="ar">→</span></button><a class="btn dark" href="tel:+33142379540" data-call>📞 01 42 37 95 40</a></div>
+      <a class="mailink in d5" href="mailto:contact@lgdparis.com" data-mail>✉ Ou écrivez-nous par e-mail</a>
     </div>
 
-    <form class="qform fromR" id="devis" novalidate aria-label="Demande de devis">
+
+  </div>
+  <a class="scrollcue" href="#chiffres" aria-label="Voir la suite"></a>
+</div>
+
+<div class="stats" id="chiffres"><div class="wrap">
+  <div class="stat"><b><span class="count" data-to="2014" data-from="1990" data-sep="">2014</span></b><span>année de création</span></div>
+  <div class="stat"><b><span class="count" data-to="100">100</span>+</b><span>autocars</span></div>
+  <div class="stat"><b><span class="count" data-to="10000">10&nbsp;000</span>+</b><span>voyageurs transportés</span></div>
+  <div class="stat"><b><span class="count" data-to="24">24</span>h/<span class="count" data-to="7">7</span>j</b><span>disponibilité</span></div>
+</div></div>
+
+<div class="marquee" aria-hidden="true"><div class="mtrack" id="mtrack">
+  <span>Transfert aéroport</span><span>Séminaires</span><span>Mariages</span><span>Gourmet City Tour</span><span>Disneyland Paris</span><span>Transport scolaire</span><span>Navette entreprise</span><span>Voyages organisés</span><span>Événements sportifs</span>
+</div></div>
+
+<section class="quote" id="devis-zone">
+  <div class="wrap">
+    <div class="qleft rv l">
+      <div class="eyebrow">Devis gratuit</div>
       <h2>Votre devis en 1&nbsp;minute</h2>
+      <p class="l">Dites-nous où, quand et combien vous êtes. Un conseiller vous répond sous 24h avec le véhicule adapté à votre groupe.</p>
+      <ul class="qsteps">
+        <li><b>1</b><span>Vous décrivez votre trajet</span></li>
+        <li><b>2</b><span>Vous recevez votre devis sous 24h</span></li>
+        <li><b>3</b><span>Votre chauffeur s'occupe du reste</span></li>
+      </ul>
+      <a class="qphone" href="tel:+33142379540" data-call><span class="ic" aria-hidden="true">📞</span><span><small>Vous préférez en parler&nbsp;?</small><b>01 42 37 95 40</b><small>24h/24, 7j/7</small></span></a>
+    </div>
+    <form class="qform rv r" id="devis" novalidate aria-label="Demande de devis">
+      <h3 class="fh">Décrivez votre trajet</h3>
       <div class="sub">Réponse sous 24h, par téléphone ou e-mail.</div>
       <div class="fprog" aria-hidden="true"><i id="fProg"></i></div>
       <div class="fprog-t" id="fProgT">0 sur 5 champs obligatoires remplis</div>
@@ -455,19 +509,7 @@ footer .addr{color:rgba(255,255,255,.6);font-size:13px}
       <div class="reass"><span>Gratuit</span><span>Sans engagement</span><span>Réponse sous 24h</span></div>
     </form>
   </div>
-  <a class="scrollcue" href="#chiffres" aria-label="Voir la suite"></a>
-</div>
-
-<div class="stats" id="chiffres"><div class="wrap">
-  <div class="stat"><b><span class="count" data-to="2014" data-from="1990" data-sep="">2014</span></b><span>année de création</span></div>
-  <div class="stat"><b><span class="count" data-to="100">100</span>+</b><span>autocars</span></div>
-  <div class="stat"><b><span class="count" data-to="10000">10&nbsp;000</span>+</b><span>voyageurs transportés</span></div>
-  <div class="stat"><b><span class="count" data-to="24">24</span>h/<span class="count" data-to="7">7</span>j</b><span>disponibilité</span></div>
-</div></div>
-
-<div class="marquee" aria-hidden="true"><div class="mtrack" id="mtrack">
-  <span>Transfert aéroport</span><span>Séminaires</span><span>Mariages</span><span>Gourmet City Tour</span><span>Disneyland Paris</span><span>Transport scolaire</span><span>Navette entreprise</span><span>Voyages organisés</span><span>Événements sportifs</span>
-</div></div>
+</section>
 
 <section class="cream" id="flotte">
   <div class="wrap">
@@ -739,6 +781,8 @@ function prefill(p){
   var b=q('#fBanner');
   if(bits.length){b.textContent='✓ Pré-rempli : '+bits.join(' · ');b.style.display='block'}
   updateProg();
+  qa('#devis-zone .rv').forEach(function(el){if(el.classList.contains('show'))return;el.style.transition='none';el.classList.add('show');void el.offsetWidth;setTimeout(function(){el.style.transition=''},50)});
+  pending=pending.filter(function(el){return !el.classList.contains('show')});
   var f=q('#devis');
   scrollToEl(f);
   f.classList.remove('fromR');f.classList.remove('flash');void f.offsetWidth;f.classList.add('flash');
@@ -858,14 +902,24 @@ setTimeout(onScroll,400);
 /* ===== marquee: duplicate content for a seamless loop ===== */
 var mt=q('#mtrack');mt.innerHTML+=mt.innerHTML;
 
-/* ===== hero video (loaded after the page, desktop only, falls back to photo) ===== */
-var v=q('#heroVid');
+/* ===== hero video: plays ONCE, the bus stays parked on the last frame ===== */
+var v=q('#heroVid'),himg=q('#heroImg');
 if(v&&!reduce&&window.innerWidth>760&&!(navigator.connection&&navigator.connection.saveData)){
-  window.addEventListener('load',function(){
+  himg.classList.add('wait');
+  var shown=false;
+  function fallback(){if(!shown){himg.classList.remove('wait');v.style.display='none'}}
+  var guard=setTimeout(fallback,4000);
+  function start(){
     v.src=v.getAttribute('data-src');
-    v.addEventListener('canplay',function(){var pr=v.play();if(pr&&pr.then)pr.then(function(){v.classList.add('on')}).catch(function(){})},{once:true});
+    v.addEventListener('canplaythrough',function(){
+      var pr=v.play();
+      if(pr&&pr.then)pr.then(function(){shown=true;clearTimeout(guard);v.classList.add('on')}).catch(fallback);
+    },{once:true});
+    v.addEventListener('error',fallback,{once:true});
+    v.addEventListener('ended',function(){v.pause();himg.classList.remove('wait')});
     v.load();
-  });
+  }
+  if(document.readyState==='complete')start();else window.addEventListener('load',start);
 }
 updateProg();
 var fm=q('#devis');fm.addEventListener('animationend',function(e){if(e.animationName==='right')fm.classList.remove('fromR');if(e.animationName==='flash')fm.classList.remove('flash')});
