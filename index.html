@@ -411,6 +411,15 @@ footer .addr{color:rgba(255,255,255,.6);font-size:13px}
   *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .rv,.in,.fromR{opacity:1!important;transform:none!important}
 }
+
+@media(max-width:374px){
+  .stats .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .stat{padding:30px 8px}
+  .stat b{font-size:27px}
+  .stat>span{font-size:13px}
+  .brand b{font-size:15px}
+  .wrap{padding:0 14px}
+}
 </style>
 </head>
 <body>
@@ -421,7 +430,7 @@ footer .addr{color:rgba(255,255,255,.6);font-size:13px}
     <a class="brand" href="#top" aria-label="LGD Paris, retour en haut"><span class="lg"><img src="lgd-paris-logo.jpeg" alt="Logo LGD Paris"></span><span><b>LGD Paris</b><small>Autocars avec chauffeur</small></span></a>
     <nav class="main" aria-label="Navigation principale"><a href="#flotte">Nos véhicules</a><a href="#services">Services</a><a href="#aeroports">Aéroports</a><a href="#avis">Avis</a><a href="#faq">FAQ</a></nav>
     <div class="hright">
-      <a class="phone" href="tel:+33142379540" data-call><span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg></span><div>01 42 37 95 40<small>24h/24, 7j/7</small></div></a>
+      <a class="phone" href="tel:+33142379540" data-call aria-label="Appeler LGD Paris au 01 42 37 95 40"><span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg></span><div>01 42 37 95 40<small>24h/24, 7j/7</small></div></a>
       <button class="btn hd" type="button" data-prefill='{}'>Devis gratuit</button>
       <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="drawer"><span></span></button>
     </div>
@@ -788,7 +797,7 @@ function prefill(p){
   f.classList.remove('fromR');f.classList.remove('flash');void f.offsetWidth;f.classList.add('flash');
   var first=REQ.map(function(s){return q(s)}).filter(function(i){return !i.value})[0];
   setTimeout(function(){if(first){first.focus({preventScroll:true});flashField(first)}},700);
-  toast(bits.length?'✓ Formulaire pré-rempli. Il reste la date et vos coordonnées.':'Décrivez votre trajet : réponse sous 24h.');
+  toast(bits.length?'✓ Formulaire pré-rempli. Complétez les champs restants.':'Décrivez votre trajet : réponse sous 24h.');
 }
 qa('[data-prefill]').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();var p={};try{p=JSON.parse(el.getAttribute('data-prefill'))}catch(err){}prefill(p)})});
 
@@ -802,7 +811,10 @@ function syncPicker(cap,announce){
   qa('.veh').forEach(function(v){var m=!!cap&&v.getAttribute('data-cap')===cap;v.classList.toggle('match',m);v.classList.toggle('dim',!!cap&&!m)});
   if(announce&&cap){q('#fPax').value=paxOf[cap];chosenVehicle=vehOf[cap];
     var b=q('#fBanner');b.textContent='✓ Véhicule choisi : '+chosenVehicle;b.style.display='block';
-    toast('✓ '+chosenVehicle+' sélectionné. Cliquez sur « Devis pour ce véhicule ».');updateProg()}
+    updateProg();
+    var mv=window.innerWidth<=960&&q('.veh.match');
+    if(mv)setTimeout(function(){scrollToEl(mv)},150);
+    else toast('✓ '+chosenVehicle+' sélectionné. Cliquez sur « Devis pour ce véhicule ».')}
 }
 q('#picker').addEventListener('click',function(e){var c=e.target.closest('.chip');if(!c)return;syncPicker(c.getAttribute('data-pax'),true)});
 
